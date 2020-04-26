@@ -5,6 +5,8 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,6 +55,15 @@ public class ClientController {
         // set `content-type` header
         headers.setContentType(MediaType.APPLICATION_JSON);
         // set `accept` header
+
+        RuntimeMXBean runtimeMxBean = ManagementFactory.getRuntimeMXBean();
+        List<String> arguments = runtimeMxBean.getInputArguments();
+
+        System.out.println("------------------------- JVM armunets");
+        arguments.forEach(a -> {
+            System.out.println(a);
+        });
+
         String firebaseApiKey = "ach";
         System.out.println("api: " + firebaseApiKey);
         headers.add("authorization", "key=" + firebaseApiKey);
