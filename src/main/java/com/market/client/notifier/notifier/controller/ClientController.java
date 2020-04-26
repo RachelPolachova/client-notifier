@@ -56,11 +56,7 @@ public class ClientController {
         headers.setContentType(MediaType.APPLICATION_JSON);
         // set `accept` header
 
-        RuntimeMXBean runtimeMxBean = ManagementFactory.getRuntimeMXBean();
-        List<String> arguments = runtimeMxBean.getInputArguments();
-
         String firebaseApiKey = System.getenv().get("FIREBASE_API");
-        System.out.println("api: " + firebaseApiKey);
         headers.add("authorization", "key=" + firebaseApiKey);
         Map<String, Object> map = new HashMap<>();
         map.put("data", new PushNotificationData("Potential client near you!",
