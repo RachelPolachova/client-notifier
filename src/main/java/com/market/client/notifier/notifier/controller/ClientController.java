@@ -59,12 +59,7 @@ public class ClientController {
         RuntimeMXBean runtimeMxBean = ManagementFactory.getRuntimeMXBean();
         List<String> arguments = runtimeMxBean.getInputArguments();
 
-        System.out.println("------------------------- JVM armunets");
-        arguments.forEach(a -> {
-            System.out.println(a);
-        });
-
-        String firebaseApiKey = "ach";
+        String firebaseApiKey = System.getenv().get("FIREBASE_API");
         System.out.println("api: " + firebaseApiKey);
         headers.add("authorization", "key=" + firebaseApiKey);
         Map<String, Object> map = new HashMap<>();
